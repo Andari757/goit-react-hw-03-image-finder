@@ -42,3 +42,10 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+.spinner {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
