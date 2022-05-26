@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import styles from "./styles.module.css"
 import { SpinnerInfinity } from 'spinners-react';
 export default function Loader() {

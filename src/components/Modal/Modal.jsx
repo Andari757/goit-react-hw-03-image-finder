@@ -36,3 +36,11 @@ export default class Modal extends Component {
         )
     }
 }
+Modal.defaultProps = {
+    url: "",
+    close: function () { }
+}
+Modal.propTypes = {
+    close: PropTypes.func,
+    url: PropTypes.string.isRequired
+}

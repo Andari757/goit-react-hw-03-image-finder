@@ -11,3 +11,16 @@ export default function ImageGallery({ items, onClick }) {
         </ul >
     )
 }
+ImageGallery.defaultProps = {
+    items: [],
+    onClick: function () { }
+}
+ImageGallery.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    items: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        webformatURL: PropTypes.string.isRequired,
+        largeImageURL: PropTypes.string.isRequired,
+        tags: PropTypes.string
+    }))
+}
