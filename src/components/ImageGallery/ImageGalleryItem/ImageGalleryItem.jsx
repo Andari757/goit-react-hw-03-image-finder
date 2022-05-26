@@ -1,8 +1,8 @@
 import styles from "./styles.module.css"
-export default function ImageGalleryItem({ items, onClick }) {
+export default function ImageGalleryItem({ item, onClick }) {
     return (
-        items.map(e => <li key={e.id} className={styles.imageGalleryItem}>
-            <img onClick={() => { onClick(e.largeImageURL) }} className={styles.image} src={e.webformatURL} alt={e.tags} />
+        <li className={styles.imageGalleryItem}>
+            <img onClick={() => { onClick(item.largeImageURL, item.tags) }} className={styles.image} src={item.webformatURL} alt={item.tags} />
         </li>
-        ))
+    )
 } 

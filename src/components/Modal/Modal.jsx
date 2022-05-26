@@ -29,7 +29,7 @@ export default class Modal extends Component {
         return createPortal(
             <div className={styles.overlay} onClick={this.closeModal}>
                 <div className={styles.modal}>
-                    <img src={this.props.url} alt="" />
+                    {this.props.children}
                 </div>
             </div>,
             modalRoot
@@ -37,10 +37,11 @@ export default class Modal extends Component {
     }
 }
 Modal.defaultProps = {
-    url: "",
+
     close: function () { }
 }
 Modal.propTypes = {
     close: PropTypes.func,
-    url: PropTypes.string.isRequired
+
 }
+

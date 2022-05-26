@@ -4,10 +4,12 @@ import ImageGalleryItem from "./ImageGalleryItem/ImageGalleryItem"
 export default function ImageGallery({ items, onClick }) {
     return (
         < ul className={styles.imageGallery} >
-            <ImageGalleryItem
-                items={items}
+            {items.map(item => (<ImageGalleryItem
+                key={item.id}
+                item={item}
                 onClick={onClick}
-            />
+            />))}
+
         </ul >
     )
 }

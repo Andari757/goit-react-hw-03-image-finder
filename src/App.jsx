@@ -37,10 +37,10 @@ export default class App extends Component {
     }
 
   }
-  showModal = (modalContent) => {
+  showModal = (url, tags) => {
     this.setState({
       modal: true,
-      modalContent: modalContent
+      modalContent: { url: url, tags: tags }
     })
   }
   closeModal = () => {
@@ -66,9 +66,13 @@ export default class App extends Component {
           onSubmit={this.setKey} />
         {Boolean(items.length) && <ImageGallery
           items={items} onClick={this.showModal} />}
-        {Boolean(items.length) && !loading && <Button onClick={this.loadMore} />}
+        {Boolean(items.length) && !loading && <Button onClick={this.loadMore} text={"Load more"} />}
         {loading && <Loader boolean={loading} />}
-        {modal && <Modal url={modalContent} close={this.closeModal} />}
+        {modal && <Modal
+          close={this.closeModal}
+          children={< img src={modalContent.url} alt={modalContent.tags} />} />
+
+        }
       </div >
     )
   };
