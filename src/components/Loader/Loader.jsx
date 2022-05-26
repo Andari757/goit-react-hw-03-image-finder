@@ -1,7 +1,9 @@
+import PropTypes from 'prop-types';
+import styles from "./styles.module.css"
 import { SpinnerInfinity } from 'spinners-react';
-export default function Loader({ boolean }) {
+export default function Loader() {
     return (
-        boolean ? <div className="spinner"> < SpinnerInfinity enabled={true} size={150} /></div > : <SpinnerInfinity enabled={false} />
+        <div className={styles.spinner}> < SpinnerInfinity enabled={true} size={150} /></div >
 
     )
 

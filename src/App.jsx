@@ -2,6 +2,7 @@ import ImageGallery from "components/ImageGallery/ImageGallery"
 import Button from "components/Button/Button";
 import Searchbar from "components/Searchbar/Searchbar";
 import Loader from "components/Loader/Loader";
+import Modal from "components/Modal/Modal";
 import { Component } from "react";
 const axios = require('axios').default;
 export default class App extends Component {
@@ -10,7 +11,9 @@ export default class App extends Component {
     key: "",
     loading: false,
     error: null,
-    items: []
+    items: [],
+    modal: false,
+    modalContent: {}
   }
   async componentDidUpdate(prevProps, prevState) {
     if (this.state.key !== prevState.key || this.state.page > prevState.page) {
@@ -34,6 +37,17 @@ export default class App extends Component {
     }
 
   }
+  showModal = (modalContent) => {
+    this.setState({
+      modal: true,
+      modalContent: modalContent
+    })
+  }
+  closeModal = () => {
+    this.setState({
+      modal: false
+    })
+  }
   loadMore = () => {
     this.setState((prev) => {
       return {
@@ -45,15 +59,16 @@ export default class App extends Component {
     this.setState({ key: data, page: 1 })
   }
   render() {
-    const { items, loading } = this.state
+    const { items, loading, modal, modalContent } = this.state
     return (
       <div >
         <Searchbar
           onSubmit={this.setKey} />
         {Boolean(items.length) && <ImageGallery
-          items={items} />}
+          items={items} onClick={this.showModal} />}
         {Boolean(items.length) && !loading && <Button onClick={this.loadMore} />}
-        <Loader boolean={this.state.loading} />
+        {loading && <Loader boolean={loading} />}
+        {modal && <Modal url={modalContent} close={this.closeModal} />}
       </div >
     )
   };
